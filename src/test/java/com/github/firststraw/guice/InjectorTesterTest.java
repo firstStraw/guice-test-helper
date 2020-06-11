@@ -1,5 +1,8 @@
 package com.github.firststraw.guice;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Binding;
 import com.google.inject.Guice;
@@ -8,9 +11,8 @@ import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.Stage;
 import com.google.inject.TypeLiteral;
+import java.util.Collections;
 import nl.jqno.equalsverifier.EqualsVerifier;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 /**
@@ -49,17 +51,26 @@ public class InjectorTesterTest {
      * {@link NullPointerException} is thrown when the array of {@link Module}s is {@code null}.
      */
     @Test(expected = NullPointerException.class)
-    public void testConstructor_WithModules_NullModuleArray() {
+    public void testConstructor_WithModulesArray_NullModuleArray() {
         new InjectorTester((Module[]) null);
     }
 
     /**
-     * Tests the {@link InjectorTester#InjectorTester(Module...)} constructor. Checks that a
+     * Tests the {@link InjectorTester#InjectorTester(Iterable)} constructor. Checks that a
+     * {@link NullPointerException} is thrown when the {@link Iterable} is {@code null}.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testConstructor_WithModulesIterable_NullModulesIterable() {
+        new InjectorTester((Iterable<Module>) null);
+    }
+
+    /**
+     * Tests the {@link InjectorTester#InjectorTester(Iterable)} constructor. Checks that a
      * {@link NullPointerException} is thrown if any of the {@link Module}s are {@code null}.
      */
     @Test(expected = NullPointerException.class)
-    public void testConstructor_WithModules_NullModule() {
-        new InjectorTester(new Module[]{null});
+    public void testConstructor_WithModulesIterable_NullModule() {
+        new InjectorTester(Collections.singletonList(null));
     }
 
     /**

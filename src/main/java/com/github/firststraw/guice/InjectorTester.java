@@ -8,6 +8,7 @@ import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.Stage;
 import com.google.inject.TypeLiteral;
+import java.util.Arrays;
 import java.util.Objects;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -36,6 +37,13 @@ public class InjectorTester {
      * @param modules {@link Module}s with which to initialize an {@link Injector}
      */
     public InjectorTester(final Module... modules) {
+        this(Arrays.asList(Objects.requireNonNull(modules, NULL_MODULES_ERROR)));
+    }
+
+    /**
+     * @param modules {@link Module}s with which to initialize an {@link Injector}
+     */
+    public InjectorTester(Iterable<? extends Module> modules) {
         Objects.requireNonNull(modules, NULL_MODULES_ERROR);
         for (final Module module : modules) {
             Objects.requireNonNull(module, NULL_MODULE_ERROR);

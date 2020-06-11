@@ -1,11 +1,11 @@
 # guice-test-helper
 A small library that simplifies unit testing of Guice injectors and modules.
 
-##Getting it
+## Getting it
 Via Maven:
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.firststraw/guice-test-helper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.firststraw/guice-test-helper)
 
-##Instructions
+## Instructions
 Create an InjectorTester instance with either an existing Injector or the modules
 you want to test.  Then use the InjectorTester to verify the presence and
 configuration of bindings.  You can verify the presence of of the binding by class,
